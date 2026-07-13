@@ -45,3 +45,5 @@ app:
     enabled: ${MAIL_ENABLED:false}
     recipient: ${NOTIFICATION_RECIPIENT:deadlenin24@gmail.com}
     from: ${MAIL_USERNAME:}
+  gallery:
+    storage-path: ${GALLERY_STORAGE_PATH:./data/gallery}

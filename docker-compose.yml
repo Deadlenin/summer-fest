@@ -40,8 +40,11 @@ services:
       MAIL_USERNAME: ${MAIL_USERNAME:-}
       MAIL_PASSWORD: ${MAIL_PASSWORD:-}
       NOTIFICATION_RECIPIENT: ${NOTIFICATION_RECIPIENT:-deadlenin24@gmail.com}
+      GALLERY_STORAGE_PATH: /app/data/gallery
     ports:
       - "8080:8080"
+    volumes:
+      - ./data/gallery:/app/data/gallery
 
 volumes:
   postgres_data:
