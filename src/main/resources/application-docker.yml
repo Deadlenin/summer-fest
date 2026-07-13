@@ -5,7 +5,7 @@ spring:
     password: ${DB_PASSWORD:postgres}
     driver-class-name: org.postgresql.Driver
   mail:
-    host: ${MAIL_HOST:smtp.gmail.com}
+    host: ${MAIL_HOST:mail.nic.ru}
     port: ${MAIL_PORT:587}
     username: ${MAIL_USERNAME:}
     password: ${MAIL_PASSWORD:}
@@ -19,5 +19,6 @@ spring:
 app:
   notification:
     enabled: ${MAIL_ENABLED:false}
-    recipient: ${NOTIFICATION_RECIPIENT:deadlenin24@gmail.com}
     from: ${MAIL_USERNAME:}
+  gallery:
+    storage-path: ${GALLERY_STORAGE_PATH:/app/data/gallery}
