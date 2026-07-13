@@ -75,10 +75,9 @@ public class RegistrationLoggingAspect {
         }
 
         log.info(
-                "Email notification started: participantId={}, participantEmail={}, recipient={}, eventsCount={}",
+                "Email notification started: participantId={}, recipient={}, eventsCount={}",
                 participant.getId(),
                 request.email(),
-                notificationProperties.recipient(),
                 events.size()
         );
 
@@ -88,18 +87,16 @@ public class RegistrationLoggingAspect {
             joinPoint.proceed();
 
             log.info(
-                    "Email notification sent: participantId={}, participantEmail={}, recipient={}, durationMs={}",
+                    "Email notification sent: participantId={}, recipient={}, durationMs={}",
                     participant.getId(),
                     request.email(),
-                    notificationProperties.recipient(),
                     System.currentTimeMillis() - startedAt
             );
         } catch (Throwable exception) {
             log.error(
-                    "Email notification failed: participantId={}, participantEmail={}, recipient={}, durationMs={}",
+                    "Email notification failed: participantId={}, recipient={}, durationMs={}",
                     participant.getId(),
                     request.email(),
-                    notificationProperties.recipient(),
                     System.currentTimeMillis() - startedAt,
                     exception
             );

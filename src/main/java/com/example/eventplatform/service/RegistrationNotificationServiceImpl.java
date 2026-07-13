@@ -5,6 +5,7 @@ import com.example.eventplatform.config.NotificationProperties;
 import com.example.eventplatform.dto.ParticipantRegistrationRequest;
 import com.example.eventplatform.entity.Event;
 import com.example.eventplatform.entity.Participant;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,8 @@ import org.springframework.util.StringUtils;
 @Service
 @RequiredArgsConstructor
 public class RegistrationNotificationServiceImpl implements RegistrationNotificationService {
+
+    private static final DateTimeFormatter EVENT_DATE_FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
     private final JavaMailSender mailSender;
     private final NotificationProperties notificationProperties;
@@ -29,15 +32,14 @@ public class RegistrationNotificationServiceImpl implements RegistrationNotifica
     ) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(notificationProperties.from());
-        message.setTo(notificationProperties.recipient());
-        message.setReplyTo(request.email());
+        message.setTo(request.email());
         message.setSubject(buildSubject(request));
         message.setText(buildBody(participant, request, events));
         mailSender.send(message);
     }
 
     private String buildSubject(ParticipantRegistrationRequest request) {
-        return "Новая регистрация: " + request.firstName() + " " + request.lastName();
+        return "Ваша заявка принята: " + request.firstName() + " " + request.lastName();
     }
 
     private String buildBody(
@@ -45,12 +47,14 @@ public class RegistrationNotificationServiceImpl implements RegistrationNotifica
             ParticipantRegistrationRequest request,
             List<Event> events
     ) {
-        String eventTitles = events.stream()
-                .map(Event::getTitle)
-                .collect(Collectors.joining(", "));
+        String eventsText = events.stream()
+                .map(this::formatEvent)
+                .collect(Collectors.joining("\n"));
 
         return """
-                Новая регистрация на мероприятие
+                Здравствуйте, %s!
+
+                Ваша заявка на мероприятие принята. Данные заявки:
 
                 Имя: %s
                 Фамилия: %s
@@ -60,9 +64,11 @@ public class RegistrationNotificationServiceImpl implements RegistrationNotifica
                 Стек: %s
                 Грейд: %s
                 Telegram: %s
-                Мероприятия: %s
+                Мероприятия:
+                %s
                 ID участника: %s
                 """.formatted(
+                request.firstName(),
                 request.firstName(),
                 request.lastName(),
                 request.email(),
@@ -71,9 +77,17 @@ public class RegistrationNotificationServiceImpl implements RegistrationNotifica
                 request.stack(),
                 formatOptional(request.grade()),
                 formatOptional(request.telegram()),
-                eventTitles,
+                eventsText,
                 participant.getId()
         );
+    }
+
+    private String formatEvent(Event event) {
+        if (event.getEventDate() == null) {
+            return "- " + event.getTitle();
+        }
+
+        return "- " + event.getTitle() + " (" + event.getEventDate().format(EVENT_DATE_FORMATTER) + ")";
     }
 
     private String formatOptional(String value) {

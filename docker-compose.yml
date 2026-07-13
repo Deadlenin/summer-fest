@@ -35,11 +35,10 @@ services:
       DB_USERNAME: postgres
       DB_PASSWORD: postgres
       MAIL_ENABLED: ${MAIL_ENABLED:-false}
-      MAIL_HOST: ${MAIL_HOST:-smtp.gmail.com}
+      MAIL_HOST: ${MAIL_HOST:-mail.nic.ru}
       MAIL_PORT: ${MAIL_PORT:-587}
       MAIL_USERNAME: ${MAIL_USERNAME:-}
       MAIL_PASSWORD: ${MAIL_PASSWORD:-}
-      NOTIFICATION_RECIPIENT: ${NOTIFICATION_RECIPIENT:-deadlenin24@gmail.com}
       GALLERY_STORAGE_PATH: /app/data/gallery
     ports:
       - "8080:8080"

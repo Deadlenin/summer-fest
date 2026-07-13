@@ -5,8 +5,10 @@ c:\Projects\EventConstructor\src\main\java\com\example\eventplatform\config\Admi
 c:\Projects\EventConstructor\src\main\java\com\example\eventplatform\config\GalleryProperties.java
 c:\Projects\EventConstructor\src\main\java\com\example\eventplatform\config\NotificationProperties.java
 c:\Projects\EventConstructor\src\main\java\com\example\eventplatform\controller\AdminController.java
+c:\Projects\EventConstructor\src\main\java\com\example\eventplatform\controller\EventController.java
 c:\Projects\EventConstructor\src\main\java\com\example\eventplatform\controller\GalleryController.java
 c:\Projects\EventConstructor\src\main\java\com\example\eventplatform\controller\ParticipantRegistrationController.java
+c:\Projects\EventConstructor\src\main\java\com\example\eventplatform\dto\EventResponse.java
 c:\Projects\EventConstructor\src\main\java\com\example\eventplatform\dto\GalleryPhotoResponse.java
 c:\Projects\EventConstructor\src\main\java\com\example\eventplatform\dto\ParticipantRegistrationRequest.java
 c:\Projects\EventConstructor\src\main\java\com\example\eventplatform\entity\AdminUser.java
@@ -23,6 +25,8 @@ c:\Projects\EventConstructor\src\main\java\com\example\eventplatform\repository\
 c:\Projects\EventConstructor\src\main\java\com\example\eventplatform\security\SecurityConfig.java
 c:\Projects\EventConstructor\src\main\java\com\example\eventplatform\service\AdminExportService.java
 c:\Projects\EventConstructor\src\main\java\com\example\eventplatform\service\AdminExportServiceImpl.java
+c:\Projects\EventConstructor\src\main\java\com\example\eventplatform\service\EventService.java
+c:\Projects\EventConstructor\src\main\java\com\example\eventplatform\service\EventServiceImpl.java
 c:\Projects\EventConstructor\src\main\java\com\example\eventplatform\service\GalleryService.java
 c:\Projects\EventConstructor\src\main\java\com\example\eventplatform\service\GalleryServiceImpl.java
 c:\Projects\EventConstructor\src\main\java\com\example\eventplatform\service\ParticipantRegistrationService.java
