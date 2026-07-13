@@ -1,4 +1,8 @@
+c:\Projects\EventConstructor\src\main\java\com\example\eventplatform\aspect\LogEmailNotification.java
+c:\Projects\EventConstructor\src\main\java\com\example\eventplatform\aspect\LogRegistration.java
+c:\Projects\EventConstructor\src\main\java\com\example\eventplatform\aspect\RegistrationLoggingAspect.java
 c:\Projects\EventConstructor\src\main\java\com\example\eventplatform\config\AdminProperties.java
+c:\Projects\EventConstructor\src\main\java\com\example\eventplatform\config\NotificationProperties.java
 c:\Projects\EventConstructor\src\main\java\com\example\eventplatform\controller\AdminController.java
 c:\Projects\EventConstructor\src\main\java\com\example\eventplatform\controller\ParticipantRegistrationController.java
 c:\Projects\EventConstructor\src\main\java\com\example\eventplatform\dto\ParticipantRegistrationRequest.java
@@ -18,3 +22,5 @@ c:\Projects\EventConstructor\src\main\java\com\example\eventplatform\service\Adm
 c:\Projects\EventConstructor\src\main\java\com\example\eventplatform\service\AdminExportServiceImpl.java
 c:\Projects\EventConstructor\src\main\java\com\example\eventplatform\service\ParticipantRegistrationService.java
 c:\Projects\EventConstructor\src\main\java\com\example\eventplatform\service\ParticipantRegistrationServiceImpl.java
+c:\Projects\EventConstructor\src\main\java\com\example\eventplatform\service\RegistrationNotificationService.java
+c:\Projects\EventConstructor\src\main\java\com\example\eventplatform\service\RegistrationNotificationServiceImpl.java

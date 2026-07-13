@@ -4,3 +4,20 @@ spring:
     username: ${DB_USERNAME:postgres}
     password: ${DB_PASSWORD:postgres}
     driver-class-name: org.postgresql.Driver
+  mail:
+    host: ${MAIL_HOST:smtp.gmail.com}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+app:
+  notification:
+    enabled: ${MAIL_ENABLED:false}
+    recipient: ${NOTIFICATION_RECIPIENT:deadlenin24@gmail.com}
+    from: ${MAIL_USERNAME:}

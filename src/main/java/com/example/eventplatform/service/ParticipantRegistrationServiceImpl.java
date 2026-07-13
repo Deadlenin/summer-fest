@@ -1,5 +1,6 @@
 package com.example.eventplatform.service;
 
+import com.example.eventplatform.aspect.LogRegistration;
 import com.example.eventplatform.dto.ParticipantRegistrationRequest;
 import com.example.eventplatform.entity.Event;
 import com.example.eventplatform.entity.Participant;
@@ -23,9 +24,11 @@ public class ParticipantRegistrationServiceImpl implements ParticipantRegistrati
     private final ParticipantRepository participantRepository;
     private final EventRepository eventRepository;
     private final ParticipantEventRepository participantEventRepository;
+    private final RegistrationNotificationService registrationNotificationService;
 
     @Override
     @Transactional
+    @LogRegistration
     public UUID register(ParticipantRegistrationRequest request) {
         List<Event> events = eventRepository.findAllById(request.eventIds());
         validateAllEventsExist(request.eventIds(), events);
@@ -36,6 +39,7 @@ public class ParticipantRegistrationServiceImpl implements ParticipantRegistrati
 
         Participant savedParticipant = participantRepository.save(participant);
         addMissingEventLinks(savedParticipant, events);
+        registrationNotificationService.notifyNewRegistration(savedParticipant, request, events);
 
         return savedParticipant.getId();
     }
