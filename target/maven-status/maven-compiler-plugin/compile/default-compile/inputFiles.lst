@@ -7,9 +7,11 @@ C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\config\Gall
 C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\config\NotificationProperties.java
 C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\config\WebConfig.java
 C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\controller\AdminController.java
+C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\controller\AdminEventController.java
 C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\controller\EventController.java
 C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\controller\GalleryController.java
 C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\controller\ParticipantRegistrationController.java
+C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\dto\EventRequest.java
 C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\dto\EventResponse.java
 C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\dto\GalleryPhotoResponse.java
 C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\dto\ParticipantRegistrationRequest.java
@@ -21,6 +23,7 @@ C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\EventPlatfo
 C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\exception\ApiErrorResponse.java
 C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\exception\GlobalExceptionHandler.java
 C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\exception\ResourceNotFoundException.java
+C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\mapper\EventMapper.java
 C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\repository\EventRepository.java
 C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\repository\ParticipantEventRepository.java
 C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\repository\ParticipantRepository.java
@@ -29,6 +32,8 @@ C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\service\Adm
 C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\service\AdminExportServiceImpl.java
 C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\service\AdminParticipantService.java
 C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\service\AdminParticipantServiceImpl.java
+C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\service\EventAdminService.java
+C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\service\EventAdminServiceImpl.java
 C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\service\EventService.java
 C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\service\EventServiceImpl.java
 C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\service\GalleryService.java

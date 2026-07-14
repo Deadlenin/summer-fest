@@ -1,6 +1,7 @@
 package com.example.eventplatform.dto;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public record EventResponse(
@@ -8,7 +9,9 @@ public record EventResponse(
         String title,
         String description,
         LocalDate eventDate,
-        String companyName,
-        String location
+        boolean registrationEnabled,
+        Integer sortOrder,
+        LocalDateTime createdAt,
+        LocalDateTime updatedAt
 ) {
 }

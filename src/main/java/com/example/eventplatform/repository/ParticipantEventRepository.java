@@ -12,6 +12,8 @@ public interface ParticipantEventRepository extends JpaRepository<ParticipantEve
 
     boolean existsByParticipantIdAndEventId(UUID participantId, UUID eventId);
 
+    void deleteAllByEventId(UUID eventId);
+
     @Query("""
             select pe
             from ParticipantEvent pe

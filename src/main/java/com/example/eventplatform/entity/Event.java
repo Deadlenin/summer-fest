@@ -55,6 +55,9 @@ public class Event {
     @Column(name = "registration_enabled")
     private boolean registrationEnabled;
 
+    @Column(name = "sort_order")
+    private Integer sortOrder;
+
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = false)
     @Builder.Default
     private Set<ParticipantEvent> participantEvents = new HashSet<>();

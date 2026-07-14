@@ -1,3 +1,4 @@
+com\example\eventplatform\service\EventAdminService.class
 com\example\eventplatform\exception\ApiErrorResponse.class
 com\example\eventplatform\service\GalleryServiceImpl.class
 com\example\eventplatform\service\EventServiceImpl.class
@@ -15,7 +16,9 @@ com\example\eventplatform\entity\Participant.class
 com\example\eventplatform\aspect\LogRegistration.class
 com\example\eventplatform\repository\ParticipantRepository.class
 com\example\eventplatform\service\EventService.class
+com\example\eventplatform\mapper\EventMapperImpl.class
 com\example\eventplatform\aspect\LogEmailNotification.class
+com\example\eventplatform\controller\AdminEventController.class
 com\example\eventplatform\aspect\RegistrationLoggingAspect.class
 com\example\eventplatform\repository\ParticipantEventRepository.class
 com\example\eventplatform\service\ParticipantRegistrationServiceImpl.class
@@ -24,9 +27,14 @@ com\example\eventplatform\controller\GalleryController.class
 com\example\eventplatform\entity\ParticipantEvent.class
 com\example\eventplatform\service\GalleryService.class
 com\example\eventplatform\dto\GalleryPhotoResponse.class
+com\example\eventplatform\service\AdminParticipantService.class
+com\example\eventplatform\mapper\EventMapper.class
 com\example\eventplatform\service\AdminExportService.class
 com\example\eventplatform\config\NotificationProperties.class
+com\example\eventplatform\dto\EventRequest.class
+com\example\eventplatform\service\EventAdminServiceImpl.class
 com\example\eventplatform\service\RegistrationNotificationService.class
+com\example\eventplatform\service\AdminParticipantServiceImpl.class
 com\example\eventplatform\repository\EventRepository.class
 com\example\eventplatform\entity\ParticipantEvent$ParticipantEventBuilder.class
 com\example\eventplatform\service\ParticipantRegistrationService.class
