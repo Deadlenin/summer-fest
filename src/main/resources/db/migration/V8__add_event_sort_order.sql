@@ -1,0 +1,2 @@
+ALTER TABLE events
+    ADD COLUMN sort_order INTEGER NULL;
