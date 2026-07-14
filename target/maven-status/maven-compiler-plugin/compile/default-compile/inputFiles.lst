@@ -27,6 +27,8 @@ C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\repository\
 C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\security\SecurityConfig.java
 C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\service\AdminExportService.java
 C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\service\AdminExportServiceImpl.java
+C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\service\AdminParticipantService.java
+C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\service\AdminParticipantServiceImpl.java
 C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\service\EventService.java
 C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\service\EventServiceImpl.java
 C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\service\GalleryService.java

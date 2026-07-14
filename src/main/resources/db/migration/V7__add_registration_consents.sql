@@ -1,0 +1,4 @@
+ALTER TABLE participants
+    ADD COLUMN personal_data_consent BOOLEAN NOT NULL DEFAULT FALSE,
+    ADD COLUMN photo_consent BOOLEAN NOT NULL DEFAULT FALSE,
+    ADD COLUMN newsletter_consent BOOLEAN NOT NULL DEFAULT FALSE;

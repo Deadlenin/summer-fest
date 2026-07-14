@@ -59,6 +59,16 @@ public class Participant {
 
     private String telegram;
 
+    @Column(name = "personal_data_consent", nullable = false)
+    private boolean personalDataConsent;
+
+    @Column(name = "photo_consent", nullable = false)
+    private boolean photoConsent;
+
+    /** Reserved for future marketing emails; registration confirmation is sent regardless. */
+    @Column(name = "newsletter_consent", nullable = false)
+    private boolean newsletterConsent;
+
     @OneToMany(mappedBy = "participant", cascade = CascadeType.ALL, orphanRemoval = false)
     @Builder.Default
     private Set<ParticipantEvent> participantEvents = new HashSet<>();

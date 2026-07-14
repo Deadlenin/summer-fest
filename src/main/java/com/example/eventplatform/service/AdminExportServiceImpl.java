@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -33,6 +34,9 @@ public class AdminExportServiceImpl implements AdminExportService {
             "Грейд",
             "Email",
             "Telegram",
+            "Согласие на обработку персональных данных",
+            "Согласие на фото/видеосъемку",
+            "Согласие на рассылку",
             "Выбранные мероприятия",
             "Дата регистрации"
     };
@@ -43,9 +47,11 @@ public class AdminExportServiceImpl implements AdminExportService {
 
     @Override
     @Transactional(readOnly = true)
-    public byte[] exportParticipantsToExcel() {
-        List<Participant> participants = participantRepository.findAll();
-        Map<java.util.UUID, List<String>> eventTitlesByParticipantId = loadEventTitlesByParticipantId();
+    public byte[] exportParticipantsToExcel(List<UUID> eventIds) {
+        List<Participant> participants = (eventIds == null || eventIds.isEmpty())
+                ? participantRepository.findAll()
+                : participantRepository.findDistinctByParticipantEventsEventIdInOrderByCreatedAtAsc(eventIds);
+        Map<UUID, List<String>> eventTitlesByParticipantId = loadEventTitlesByParticipantId();
 
         try (XSSFWorkbook workbook = new XSSFWorkbook(); ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
             Sheet sheet = workbook.createSheet(SHEET_NAME);
@@ -63,11 +69,11 @@ public class AdminExportServiceImpl implements AdminExportService {
         }
     }
 
-    private Map<java.util.UUID, List<String>> loadEventTitlesByParticipantId() {
-        Map<java.util.UUID, List<String>> eventTitlesByParticipantId = new LinkedHashMap<>();
+    private Map<UUID, List<String>> loadEventTitlesByParticipantId() {
+        Map<UUID, List<String>> eventTitlesByParticipantId = new LinkedHashMap<>();
 
         for (ParticipantEvent participantEvent : participantEventRepository.findAllWithParticipantAndEvent()) {
-            java.util.UUID participantId = participantEvent.getParticipant().getId();
+            UUID participantId = participantEvent.getParticipant().getId();
             eventTitlesByParticipantId
                     .computeIfAbsent(participantId, ignored -> new ArrayList<>())
                     .add(participantEvent.getEvent().getTitle());
@@ -84,7 +90,7 @@ public class AdminExportServiceImpl implements AdminExportService {
         }
     }
 
-    private void fillDataRows(Sheet sheet, List<Participant> participants, Map<java.util.UUID, List<String>> eventTitlesByParticipantId) {
+    private void fillDataRows(Sheet sheet, List<Participant> participants, Map<UUID, List<String>> eventTitlesByParticipantId) {
         int rowIndex = 1;
         for (Participant participant : participants) {
             Row row = sheet.createRow(rowIndex++);
@@ -98,8 +104,11 @@ public class AdminExportServiceImpl implements AdminExportService {
             row.createCell(5).setCellValue(nullSafe(participant.getGrade()));
             row.createCell(6).setCellValue(nullSafe(participant.getEmail()));
             row.createCell(7).setCellValue(nullSafe(participant.getTelegram()));
-            row.createCell(8).setCellValue(String.join(", ", eventTitles));
-            row.createCell(9).setCellValue(
+            row.createCell(8).setCellValue(yesNo(participant.isPersonalDataConsent()));
+            row.createCell(9).setCellValue(yesNo(participant.isPhotoConsent()));
+            row.createCell(10).setCellValue(yesNo(participant.isNewsletterConsent()));
+            row.createCell(11).setCellValue(String.join(", ", eventTitles));
+            row.createCell(12).setCellValue(
                     participant.getCreatedAt() == null
                             ? ""
                             : DATE_TIME_FORMATTER.format(participant.getCreatedAt())
@@ -109,5 +118,9 @@ public class AdminExportServiceImpl implements AdminExportService {
 
     private String nullSafe(String value) {
         return value == null ? "" : value;
+    }
+
+    private String yesNo(boolean value) {
+        return value ? "Да" : "Нет";
     }
 }

@@ -14,8 +14,11 @@ public record ParticipantRegistrationRequest(
         @NotBlank String company,
         @NotBlank String projectRole,
         @NotBlank String stack,
-        String grade,
+        @NotBlank String grade,
         String telegram,
-        @NotEmpty List<@NotNull UUID> eventIds
+        @NotEmpty List<@NotNull UUID> eventIds,
+        boolean personalDataConsent,
+        boolean photoConsent,
+        boolean newsletterConsent
 ) {
 }

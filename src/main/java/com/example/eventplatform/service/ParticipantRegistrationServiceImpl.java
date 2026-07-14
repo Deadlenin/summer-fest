@@ -68,6 +68,9 @@ public class ParticipantRegistrationServiceImpl implements ParticipantRegistrati
         participant.setStack(request.stack());
         participant.setGrade(request.grade());
         participant.setTelegram(request.telegram());
+        participant.setPersonalDataConsent(request.personalDataConsent());
+        participant.setPhotoConsent(request.photoConsent());
+        participant.setNewsletterConsent(request.newsletterConsent());
         return participant;
     }
 
@@ -81,6 +84,9 @@ public class ParticipantRegistrationServiceImpl implements ParticipantRegistrati
                 .stack(request.stack())
                 .grade(request.grade())
                 .telegram(request.telegram())
+                .personalDataConsent(request.personalDataConsent())
+                .photoConsent(request.photoConsent())
+                .newsletterConsent(request.newsletterConsent())
                 .build();
     }
 

@@ -159,38 +159,78 @@ Behavior:
 - old participant-event links are never removed automatically
 - duplicate participant-event links are not created
 
-### Admin Export
+## Административная панель
 
-Endpoint:
+На данном этапе админ-функциональность минимальная: Basic Authentication и экспорт участников в Excel.
+
+### URL
 
 ```http
 GET /api/admin/export
 ```
 
-Authentication:
+### Авторизация
 
-- HTTP Basic Auth
-- username and password are configured in `application.yml`
+HTTP Basic Authentication.
 
-The endpoint returns an Excel file with:
+Учётные данные задаются в `application.yml`:
 
-- last name
-- first name
-- company
-- role
-- stack
-- grade
-- email
-- telegram
-- selected events
-- registration date
+```yaml
+app:
+  admin:
+    username: admin
+    password: admin
+```
+
+По умолчанию:
+
+- Логин: `admin`
+- Пароль: `admin`
+
+Пользователи из базы данных не используются.
+
+### Пример в Postman
+
+1. Method: `GET`
+2. URL: `http://localhost:8080/api/admin/export`
+3. Вкладка **Authorization** → Type: **Basic Auth**
+4. Username: `admin`
+5. Password: `admin`
+6. Send
+
+Успешный ответ:
+
+- Status: `200 OK`
+- Body: бинарный файл `participants-export.xlsx`
+
+Без авторизации (или с неверными данными):
+
+- Status: `401 Unauthorized`
+
+### Excel
+
+Файл содержит колонки:
+
+- Фамилия, Имя, Компания, Роль, Стек, Грейд, Email, Telegram
+- Согласие на обработку персональных данных
+- Согласие на фото/видеосъемку
+- Согласие на рассылку
+- Выбранные мероприятия
+- Дата регистрации
 
 ## Security
 
-- `/api/admin/**` requires HTTP Basic Authentication
-- all non-admin endpoints are currently public
+Публичные endpoint (без авторизации):
+
+- `GET /api/events`
+- `GET /api/gallery`
+- `GET /api/gallery/{filename}`
+- `POST /api/participants/register`
+
+Защищённые endpoint:
+
+- `/api/admin/**` — требует HTTP Basic Authentication
 
 ## Notes
 
-- `admin_users` table exists in the schema, but current admin authentication is configured from `application.yml`
-- Maven commands were not executed in this environment because `mvn` was unavailable in `PATH`
+- `admin_users` table exists in the schema, but current admin authentication is configured from `application.yml` via `AdminProperties`
