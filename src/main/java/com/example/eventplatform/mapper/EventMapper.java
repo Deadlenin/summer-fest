@@ -14,7 +14,6 @@ public interface EventMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "companyName", ignore = true)
-    @Mapping(target = "location", ignore = true)
     @Mapping(target = "participantEvents", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)
@@ -22,7 +21,6 @@ public interface EventMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "companyName", ignore = true)
-    @Mapping(target = "location", ignore = true)
     @Mapping(target = "participantEvents", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "updatedAt", ignore = true)

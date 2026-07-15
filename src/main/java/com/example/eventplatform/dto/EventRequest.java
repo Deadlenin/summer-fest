@@ -9,6 +9,7 @@ public record EventRequest(
         String description,
         String extendedDescription,
         @NotNull LocalDate eventDate,
+        String location,
         @NotNull Boolean registrationEnabled,
         Integer sortOrder
 ) {
