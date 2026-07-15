@@ -44,6 +44,9 @@ public class Event {
     @Column(columnDefinition = "TEXT")
     private String description;
 
+    @Column(name = "extended_description", columnDefinition = "TEXT")
+    private String extendedDescription;
+
     @Column(name = "event_date")
     private LocalDate eventDate;
 

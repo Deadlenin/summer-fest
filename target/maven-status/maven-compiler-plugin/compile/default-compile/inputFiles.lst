@@ -19,8 +19,11 @@ C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\entity\Admi
 C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\entity\Event.java
 C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\entity\Participant.java
 C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\entity\ParticipantEvent.java
+C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\event\ParticipantRegisteredEvent.java
+C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\event\ParticipantRegisteredEventListener.java
 C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\EventPlatformApplication.java
 C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\exception\ApiErrorResponse.java
+C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\exception\BadRequestException.java
 C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\exception\GlobalExceptionHandler.java
 C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\exception\ResourceNotFoundException.java
 C:\Projects\EventConstructor\src\main\java\com\example\eventplatform\mapper\EventMapper.java

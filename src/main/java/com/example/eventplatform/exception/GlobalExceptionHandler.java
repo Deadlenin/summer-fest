@@ -2,6 +2,7 @@ package com.example.eventplatform.exception;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -17,6 +18,20 @@ public class GlobalExceptionHandler {
         return buildResponse(HttpStatus.NOT_FOUND, ex.getMessage(), List.of());
     }
 
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<ApiErrorResponse> handleBadRequest(BadRequestException ex) {
+        return buildResponse(HttpStatus.BAD_REQUEST, ex.getMessage(), List.of());
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<ApiErrorResponse> handleDataIntegrityViolation(DataIntegrityViolationException ex) {
+        return buildResponse(
+                HttpStatus.CONFLICT,
+                "Data conflict",
+                List.of(resolveConflictDetail(ex))
+        );
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiErrorResponse> handleValidation(MethodArgumentNotValidException ex) {
         List<String> details = ex.getBindingResult().getFieldErrors().stream()
@@ -29,6 +44,27 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiErrorResponse> handleUnexpected(Exception ex) {
         return buildResponse(HttpStatus.INTERNAL_SERVER_ERROR, "Unexpected server error", List.of(ex.getMessage()));
+    }
+
+    private String resolveConflictDetail(DataIntegrityViolationException ex) {
+        String message = ex.getMostSpecificCause() != null
+                ? ex.getMostSpecificCause().getMessage()
+                : ex.getMessage();
+
+        if (message == null) {
+            return "Unique constraint violated";
+        }
+
+        String lowerMessage = message.toLowerCase();
+        if (lowerMessage.contains("email") || lowerMessage.contains("participants_email")) {
+            return "Participant with this email already exists";
+        }
+        if (lowerMessage.contains("participant_events")
+                || lowerMessage.contains("uk_participant_events_participant_event")) {
+            return "Participant is already registered for this event";
+        }
+
+        return "Unique constraint violated";
     }
 
     private String formatFieldError(FieldError error) {

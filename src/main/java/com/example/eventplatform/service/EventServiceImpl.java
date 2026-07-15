@@ -18,7 +18,7 @@ public class EventServiceImpl implements EventService {
     @Override
     @Transactional(readOnly = true)
     public List<EventResponse> getAvailableEvents() {
-        return eventRepository.findAvailableOrdered().stream()
+        return eventRepository.findAllOrdered().stream()
                 .map(eventMapper::toResponse)
                 .toList();
     }

@@ -5,6 +5,8 @@ import com.example.eventplatform.dto.ParticipantRegistrationRequest;
 import com.example.eventplatform.entity.Event;
 import com.example.eventplatform.entity.Participant;
 import com.example.eventplatform.entity.ParticipantEvent;
+import com.example.eventplatform.event.ParticipantRegisteredEvent;
+import com.example.eventplatform.exception.BadRequestException;
 import com.example.eventplatform.exception.ResourceNotFoundException;
 import com.example.eventplatform.repository.EventRepository;
 import com.example.eventplatform.repository.ParticipantEventRepository;
@@ -14,6 +16,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,7 +27,7 @@ public class ParticipantRegistrationServiceImpl implements ParticipantRegistrati
     private final ParticipantRepository participantRepository;
     private final EventRepository eventRepository;
     private final ParticipantEventRepository participantEventRepository;
-    private final RegistrationNotificationService registrationNotificationService;
+    private final ApplicationEventPublisher eventPublisher;
 
     @Override
     @Transactional
@@ -32,6 +35,7 @@ public class ParticipantRegistrationServiceImpl implements ParticipantRegistrati
     public UUID register(ParticipantRegistrationRequest request) {
         List<Event> events = eventRepository.findAllById(request.eventIds());
         validateAllEventsExist(request.eventIds(), events);
+        validateRegistrationEnabled(events);
 
         Participant participant = participantRepository.findByEmail(request.email())
                 .map(existing -> updateParticipant(existing, request))
@@ -39,7 +43,7 @@ public class ParticipantRegistrationServiceImpl implements ParticipantRegistrati
 
         Participant savedParticipant = participantRepository.save(participant);
         addMissingEventLinks(savedParticipant, events);
-        registrationNotificationService.notifyNewRegistration(savedParticipant, request, events);
+        eventPublisher.publishEvent(new ParticipantRegisteredEvent(savedParticipant, request, events));
 
         return savedParticipant.getId();
     }
@@ -56,6 +60,18 @@ public class ParticipantRegistrationServiceImpl implements ParticipantRegistrati
 
         if (!missingIds.isEmpty()) {
             throw new ResourceNotFoundException("Events not found: " + missingIds);
+        }
+    }
+
+    private void validateRegistrationEnabled(List<Event> events) {
+        List<UUID> closedEventIds = events.stream()
+                .filter(event -> !event.isRegistrationEnabled())
+                .map(Event::getId)
+                .distinct()
+                .toList();
+
+        if (!closedEventIds.isEmpty()) {
+            throw new BadRequestException("Registration is closed for events: " + closedEventIds);
         }
     }
 

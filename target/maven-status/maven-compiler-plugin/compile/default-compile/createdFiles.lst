@@ -2,6 +2,7 @@ com\example\eventplatform\service\EventAdminService.class
 com\example\eventplatform\exception\ApiErrorResponse.class
 com\example\eventplatform\service\GalleryServiceImpl.class
 com\example\eventplatform\service\EventServiceImpl.class
+com\example\eventplatform\exception\BadRequestException.class
 com\example\eventplatform\exception\GlobalExceptionHandler.class
 com\example\eventplatform\controller\EventController.class
 com\example\eventplatform\entity\Event$EventBuilder.class
@@ -15,6 +16,7 @@ com\example\eventplatform\entity\AdminUser$AdminUserBuilder.class
 com\example\eventplatform\entity\Participant.class
 com\example\eventplatform\aspect\LogRegistration.class
 com\example\eventplatform\repository\ParticipantRepository.class
+com\example\eventplatform\event\ParticipantRegisteredEventListener.class
 com\example\eventplatform\service\EventService.class
 com\example\eventplatform\mapper\EventMapperImpl.class
 com\example\eventplatform\aspect\LogEmailNotification.class
@@ -39,6 +41,7 @@ com\example\eventplatform\repository\EventRepository.class
 com\example\eventplatform\entity\ParticipantEvent$ParticipantEventBuilder.class
 com\example\eventplatform\service\ParticipantRegistrationService.class
 com\example\eventplatform\config\AdminProperties.class
+com\example\eventplatform\event\ParticipantRegisteredEvent.class
 com\example\eventplatform\controller\ParticipantRegistrationController.class
 com\example\eventplatform\entity\AdminUser.class
 com\example\eventplatform\entity\Participant$ParticipantBuilder.class
