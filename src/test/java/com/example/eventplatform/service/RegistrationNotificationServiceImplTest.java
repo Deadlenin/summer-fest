@@ -95,8 +95,7 @@ class RegistrationNotificationServiceImplTest {
         SimpleMailMessage message = messageCaptor.getValue();
         assertThat(message.getFrom()).isEqualTo(FROM);
         assertThat(message.getTo()).containsExactly(recipientEmail);
-        assertThat(message.getSubject()).contains("Иван");
-        assertThat(message.getText()).contains(recipientEmail);
-        assertThat(message.getText()).contains("Митап");
+        assertThat(message.getSubject()).isEqualTo("Спасибо, твоя заявка на Летний ТехФест 2026 принята.");
+        assertThat(message.getText()).isEqualTo("Спасибо, твоя заявка на Летний ТехФест 2026 принята.");
     }
 }
