@@ -26,6 +26,7 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.GET, "/api/events", "/api/events/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/faq", "/api/faq/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/gallery", "/api/gallery/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/participants/register").permitAll()
                         .requestMatchers("/api/admin/**").authenticated()
